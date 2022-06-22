@@ -9,7 +9,7 @@ export class Negociacao {
     }
     get data() {
         const data = new Date(this._data.getTime());
-        return this._data;
+        return data;
     }
     static criaDe(dataString, quantidadeString, valorString) {
         const exp = /-/g;

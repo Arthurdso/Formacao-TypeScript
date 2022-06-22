@@ -1,16 +1,16 @@
 export abstract class View<T> {
-    
+
     protected elemento: HTMLElement;
     private escapar = false;
-    
+
     constructor(seletor: string, escapar?: boolean) {
         const elemento = document.querySelector(seletor);
         if (elemento) {
             this.elemento = elemento as HTMLElement;
         } else {
-            throw new Error(`Seletor ${seletor} não encontrado`);
+            throw Error(`Seletor ${seletor} não existe no DOM. Verifique`);
         }
-        if (escapar){
+        if (escapar) {
             this.escapar = escapar;
         }
     }
@@ -19,7 +19,7 @@ export abstract class View<T> {
         let template = this.template(model);
         if (this.escapar) {
             template = template
-            .replace(/<script>[\s\S*?]<\/script>/, '')
+                .replace(/<script>[\s\S]*?<\/script>/, '');
         }
         this.elemento.innerHTML = template;
     }
